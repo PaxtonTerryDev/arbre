@@ -17,6 +17,10 @@
   "engines": {
     "node": ">=18"
   },
+  "overrides": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0"
+  },
   "packageManager": "npm@10.9.0",
   "workspaces": [
     "apps/*",
