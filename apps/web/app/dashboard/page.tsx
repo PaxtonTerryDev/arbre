@@ -1,4 +1,6 @@
 import { AppSidebar } from "@/components/app-sidebar";
+import { AreaChart } from "@/components/area-chart";
+import { BarChart } from "@/components/bar-chart";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -45,6 +47,7 @@ export default function Page() {
             <div className="bg-muted/50 aspect-video rounded-xl" />
             <div className="bg-muted/50 aspect-video rounded-xl" />
           </div>
+          <AreaChart />
           <div className="bg-muted/50 min-h-screen flex-1 rounded-xl md:min-h-min" />
         </div>
       </SidebarInset>
