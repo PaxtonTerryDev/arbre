@@ -4,7 +4,7 @@ import { Log } from "./types/log";
 export class Arbre {
   private static _instance: Arbre | null = null;
 
-  private constructor() {}
+  private constructor() { }
 
   static get_instance(): Arbre {
     if (this._instance === null) {
@@ -14,6 +14,7 @@ export class Arbre {
   }
 
   private _layers: Layer[] = [];
+
   public handleLog<Payload, Scope>(log: Log<Payload, Scope>): void {
     for (const layer of this._layers) {
       layer.handle(log);

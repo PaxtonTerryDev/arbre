@@ -40,33 +40,33 @@ export function trace<Payload, Scope>(
   message: string,
   opts?: LogOpts<Payload, Scope>,
 ): Log<Payload, Scope> {
-  return createHandleLog("debug", message, opts);
+  return createHandleLog("trace", message, opts);
 }
 
 export function info<Payload, Scope>(
   message: string,
   opts?: LogOpts<Payload, Scope>,
 ): Log<Payload, Scope> {
-  return createHandleLog("debug", message, opts);
+  return createHandleLog("info", message, opts);
 }
 
 export function warn<Payload, Scope>(
   message: string,
   opts?: LogOpts<Payload, Scope>,
 ): Log<Payload, Scope> {
-  return createHandleLog("debug", message, opts);
+  return createHandleLog("warn", message, opts);
 }
 
 export function error<Payload, Scope>(
   message: string,
   opts?: LogOpts<Payload, Scope>,
 ): Log<Payload, Scope> {
-  return createHandleLog("debug", message, opts);
+  return createHandleLog("error", message, opts);
 }
 
 export function fatal<Payload, Scope>(
   message: string,
   opts?: LogOpts<Payload, Scope>,
 ): Log<Payload, Scope> {
-  return createHandleLog("debug", message, opts);
+  return createHandleLog("fatal", message, opts);
 }
