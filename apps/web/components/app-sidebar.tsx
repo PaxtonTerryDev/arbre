@@ -13,9 +13,6 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import {
-  RowsIcon,
-  WaveformIcon,
-  CommandIcon,
   TerminalIcon,
   RobotIcon,
   BookOpenIcon,
@@ -36,15 +33,15 @@ const data = {
   teams: [
     {
       name: "Gold Team",
-      logo: <RowsIcon />,
+      color: "#ca8a04",
     },
     {
       name: "Blue Team",
-      logo: <WaveformIcon />,
+      color: "#2563eb",
     },
     {
       name: "Red Team",
-      logo: <CommandIcon />,
+      color: "#dc2626",
     },
   ],
   navMain: [
@@ -151,9 +148,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </div>
           <span className="text-base font-semibold tracking-tight group-data-[collapsible=icon]:hidden">Arbre</span>
         </div>
-        <div className="group-data-[collapsible=icon]:hidden">
-          <TeamSwitcher teams={data.teams} />
-        </div>
+        <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
