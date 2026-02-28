@@ -1,19 +1,30 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 
-import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
+import { NavMain } from "@/components/nav-main";
+import { NavUser } from "@/components/nav-user";
+import { TeamSwitcher } from "@/components/team-switcher";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@/components/ui/sidebar"
-import { RowsIcon, WaveformIcon, CommandIcon, TerminalIcon, RobotIcon, BookOpenIcon, GearIcon, CropIcon, ChartPieIcon, MapTrifoldIcon } from "@phosphor-icons/react"
+} from "@/components/ui/sidebar";
+import {
+  RowsIcon,
+  WaveformIcon,
+  CommandIcon,
+  TerminalIcon,
+  RobotIcon,
+  BookOpenIcon,
+  GearIcon,
+  CropIcon,
+  ChartPieIcon,
+  MapTrifoldIcon,
+  TreeIcon,
+} from "@phosphor-icons/react";
 
 // This is sample data.
 const data = {
@@ -24,61 +35,39 @@ const data = {
   },
   teams: [
     {
-      name: "Acme Inc",
-      logo: (
-        <RowsIcon
-        />
-      ),
-      plan: "Enterprise",
+      name: "Gold Team",
+      logo: <RowsIcon />,
     },
     {
-      name: "Acme Corp.",
-      logo: (
-        <WaveformIcon
-        />
-      ),
-      plan: "Startup",
+      name: "Blue Team",
+      logo: <WaveformIcon />,
     },
     {
-      name: "Evil Corp.",
-      logo: (
-        <CommandIcon
-        />
-      ),
-      plan: "Free",
+      name: "Red Team",
+      logo: <CommandIcon />,
     },
   ],
   navMain: [
     {
-      title: "Playground",
+      title: "Applications",
       url: "#",
-      icon: (
-        <TerminalIcon
-        />
-      ),
+      icon: <TerminalIcon />,
       isActive: true,
       items: [
         {
-          title: "History",
+          title: "Main Site",
           url: "#",
         },
         {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
+          title: "Fulfillment API",
           url: "#",
         },
       ],
     },
     {
-      title: "Models",
+      title: "Queues",
       url: "#",
-      icon: (
-        <RobotIcon
-        />
-      ),
+      icon: <RobotIcon />,
       items: [
         {
           title: "Genesis",
@@ -97,10 +86,7 @@ const data = {
     {
       title: "Documentation",
       url: "#",
-      icon: (
-        <BookOpenIcon
-        />
-      ),
+      icon: <BookOpenIcon />,
       items: [
         {
           title: "Introduction",
@@ -123,10 +109,7 @@ const data = {
     {
       title: "Settings",
       url: "#",
-      icon: (
-        <GearIcon
-        />
-      ),
+      icon: <GearIcon />,
       items: [
         {
           title: "General",
@@ -136,14 +119,6 @@ const data = {
           title: "Team",
           url: "#",
         },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
       ],
     },
   ],
@@ -151,44 +126,42 @@ const data = {
     {
       name: "Design Engineering",
       url: "#",
-      icon: (
-        <CropIcon
-        />
-      ),
+      icon: <CropIcon />,
     },
     {
       name: "Sales & Marketing",
       url: "#",
-      icon: (
-        <ChartPieIcon
-        />
-      ),
+      icon: <ChartPieIcon />,
     },
     {
       name: "Travel",
       url: "#",
-      icon: (
-        <MapTrifoldIcon
-        />
-      ),
+      icon: <MapTrifoldIcon />,
     },
   ],
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <div className="flex items-center gap-2 px-2 py-1 group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:px-0">
+          <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+            <TreeIcon />
+          </div>
+          <span className="text-base font-semibold tracking-tight group-data-[collapsible=icon]:hidden">Arbre</span>
+        </div>
+        <div className="group-data-[collapsible=icon]:hidden">
+          <TeamSwitcher teams={data.teams} />
+        </div>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }
