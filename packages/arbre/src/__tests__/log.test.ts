@@ -1,12 +1,18 @@
-import { describe, it, expect, jest } from "@jest/globals";
-import { log } from "..";
+import { describe, it, expect, jest, beforeAll } from "@jest/globals";
+import { Arbre, Stdout, info } from "..";
 
-jest.spyOn(global.console, "log");
+jest.spyOn(global.console, "log").mockImplementation(() => {});
 
-describe("@repo/logger", () => {
-  it("prints a message", () => {
-    log("hello");
-    // eslint-disable-next-line no-console -- testing console
-    expect(console.log).toHaveBeenCalledWith("LOGGER: ", "hello");
+describe("arbre", () => {
+  beforeAll(() => {
+    Arbre.get_instance().addLayer(new Stdout());
+  });
+
+  it("info logs to stdout with correct level and message", async () => {
+    info("hello");
+    await new Promise<void>((resolve) => setImmediate(resolve));
+    expect(console.log).toHaveBeenCalledWith(
+      expect.stringMatching(/\[info\].*hello/),
+    );
   });
 });
