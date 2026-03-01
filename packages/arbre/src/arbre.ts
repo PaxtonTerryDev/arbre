@@ -14,9 +14,11 @@ export class Arbre {
   }
 
   private _layers: Layer[] = [];
-  public handleLog<Payload, Scope>(log: Log<Payload, Scope>): void {
+  public async handleLog<Payload, Scope>(log: Log<Payload, Scope>): Promise<void> {
+    let current: Log<Payload, Scope> | null = log;
     for (const layer of this._layers) {
-      layer.handle(log);
+      current = await (layer as Layer<Payload, Scope>).handle(current);
+      if (current === null) break;
     }
   }
 
