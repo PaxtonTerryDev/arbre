@@ -6,6 +6,7 @@ export type { Layer } from "./layer";
 export { Stdout } from "./layer/stdout-layer";
 export { Filter } from "./layer/filter-layer";
 export { Json } from "./layer/json-layer";
+export { App } from "./layer/app-layer";
 export type { Log, LogLevel } from "./types/log";
 
 interface LogOpts<Payload, Scope> {
