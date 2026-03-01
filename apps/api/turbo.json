@@ -2,7 +2,7 @@
   "extends": ["//"],
   "tasks": {
     "build": {
-      "env": ["PORT"],
+      "env": ["PORT", "HOST", "DATABASE_URL", "NODE_ENV"],
       "outputs": ["dist/**"]
     }
   }
