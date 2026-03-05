@@ -4,4 +4,17 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  schemas  = ["arbre"]
+}
+
+model Log {
+  id        String   @id @default(uuid())
+  timestamp DateTime
+  level     String
+  message   String?
+  scope     String?
+  payload   Json?
+
+  @@map("log")
+  @@schema("arbre")
 }
