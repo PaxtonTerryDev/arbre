@@ -4,7 +4,7 @@ import { Log } from "./types/log";
 export class Arbre {
   private static _instance: Arbre | null = null;
 
-  private constructor() { }
+  private constructor() {}
 
   static get_instance(): Arbre {
     if (this._instance === null) {
@@ -14,7 +14,9 @@ export class Arbre {
   }
 
   private _layers: Layer[] = [];
-  public async handleLog<Payload, Scope>(log: Log<Payload, Scope>): Promise<void> {
+  public async handleLog<Payload = object, Scope extends string = string>(
+    log: Log<Payload, Scope>,
+  ): Promise<void> {
     let current: Log<Payload, Scope> | null = log;
     for (const layer of this._layers) {
       current = await (layer as Layer<Payload, Scope>).handle(current);
@@ -22,8 +24,7 @@ export class Arbre {
     }
   }
 
-  public addLayer<Payload, Scope>(layer: Layer<Payload, Scope>): void {
+  public addLayer(layer: Layer): void {
     this._layers.push(layer);
   }
 }
-

@@ -1,15 +1,13 @@
 import { Layer } from ".";
 import { Log } from "../types/log";
 
-export class App<Payload extends object = object, Scope = unknown>
-  implements Layer<Payload, Scope>
-{
+export class App implements Layer {
   constructor(private readonly app: string) {}
 
-  handle(log: Log<Payload, Scope>): Log<Payload, Scope> {
+  handle(log: Log): Log {
     return {
       ...log,
-      payload: { ...log.payload, app: this.app } as Payload,
+      payload: { ...log.payload, app: this.app },
     };
   }
 }

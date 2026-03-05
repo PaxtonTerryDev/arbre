@@ -1,7 +1,7 @@
 import { Layer } from ".";
 import { Log } from "../types/log";
 
-export class Stdout<Payload, Scope> implements Layer<Payload, Scope> {
+export class Stdout<Payload, Scope extends string = string> implements Layer<Payload, Scope> {
   private format(log: Log<Payload, Scope>): string {
     return `${log.timestamp.toLocaleString()} [${log.level}]${log.scope ? ` [${String(log.scope)}] ` : " "}${log.message}`;
   }

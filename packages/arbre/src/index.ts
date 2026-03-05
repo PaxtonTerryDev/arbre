@@ -9,19 +9,19 @@ export { Json } from "./layer/json-layer";
 export { App } from "./layer/app-layer";
 export type { Log, LogLevel } from "./types/log";
 
-interface LogOpts<Payload, Scope> {
+interface LogOpts<Payload, Scope extends string> {
   scope?: Scope;
   payload?: Payload;
 }
 
-async function dispatch<Payload, Scope>(
+async function dispatch<Payload, Scope extends string>(
   log: Log<Payload, Scope>,
 ): Promise<void> {
   const instance = Arbre.get_instance();
   await instance.handleLog<Payload, Scope>(log);
 }
 
-function createHandleLog<Payload, Scope>(
+function createHandleLog<Payload, Scope extends string>(
   level: LogLevel,
   message: string,
   opts?: LogOpts<Payload, Scope>,
@@ -37,42 +37,42 @@ function createHandleLog<Payload, Scope>(
   return log;
 }
 
-export function debug<Payload, Scope>(
+export function debug<Payload, Scope extends string>(
   message: string,
   opts?: LogOpts<Payload, Scope>,
 ): Log<Payload, Scope> {
   return createHandleLog("debug", message, opts);
 }
 
-export function trace<Payload, Scope>(
+export function trace<Payload, Scope extends string>(
   message: string,
   opts?: LogOpts<Payload, Scope>,
 ): Log<Payload, Scope> {
   return createHandleLog("trace", message, opts);
 }
 
-export function info<Payload, Scope>(
+export function info<Payload, Scope extends string>(
   message: string,
   opts?: LogOpts<Payload, Scope>,
 ): Log<Payload, Scope> {
   return createHandleLog("info", message, opts);
 }
 
-export function warn<Payload, Scope>(
+export function warn<Payload, Scope extends string>(
   message: string,
   opts?: LogOpts<Payload, Scope>,
 ): Log<Payload, Scope> {
   return createHandleLog("warn", message, opts);
 }
 
-export function error<Payload, Scope>(
+export function error<Payload, Scope extends string>(
   message: string,
   opts?: LogOpts<Payload, Scope>,
 ): Log<Payload, Scope> {
   return createHandleLog("error", message, opts);
 }
 
-export function fatal<Payload, Scope>(
+export function fatal<Payload, Scope extends string>(
   message: string,
   opts?: LogOpts<Payload, Scope>,
 ): Log<Payload, Scope> {
